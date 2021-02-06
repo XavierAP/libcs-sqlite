@@ -1,7 +1,7 @@
+using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SQLite;
 using System.IO;
 
 namespace JP.SQLite
@@ -19,7 +19,7 @@ namespace JP.SQLite
 	/// <exception>Up to you buddy.</exception>
 	public class SQLiteConnector
 	{
-		private readonly SQLiteConnection connection;
+		private readonly SqliteConnection connection;
 		private readonly object Locker = new object();
 
 		/// <param name="fileExists">If false, tries to create a blank file;
@@ -28,12 +28,12 @@ namespace JP.SQLite
 		{
 			CheckFile(pathName, fileExists);
 
-			var cs = new SQLiteConnectionStringBuilder
+			var cs = new SqliteConnectionStringBuilder
 			{
 				ForeignKeys = true,
 				DataSource = pathName
 			};
-			connection = new SQLiteConnection(cs.ToString());
+			connection = new SqliteConnection(cs.ToString());
 			/*
 			if(attachedPathNames != null && attachedPathNames.Length > 0)
 			{
@@ -77,7 +77,7 @@ namespace JP.SQLite
 				try
 				{
 					connection.Open();
-					using(var command = new SQLiteCommand(sqlStatement, connection))
+					using(var command = new SqliteCommand(sqlStatement, connection))
 					using(var reader = command.ExecuteReader())
 						dtable.Load(reader);
 				}
@@ -103,7 +103,7 @@ namespace JP.SQLite
 			if(sqlStatements == null)
 				throw new ArgumentNullException("sqlStatements");
 
-			SQLiteTransaction transaction = null;
+			SqliteTransaction transaction = null;
 			lock(Locker)
 			{
 				try
@@ -111,7 +111,7 @@ namespace JP.SQLite
 					connection.Open();
 					transaction = connection.BeginTransaction();
 
-					using(var command = new SQLiteCommand())
+					using(var command = new SqliteCommand())
 					{
 						command.Connection = connection;
 						command.Transaction = transaction;
