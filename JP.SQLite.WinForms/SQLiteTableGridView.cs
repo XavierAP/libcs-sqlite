@@ -7,17 +7,32 @@ namespace JP.SQLite
 	{
 		public bool AllowUserToAddRows
 		{
-			get => table.AllowUserToAddRows;
 			set => table.AllowUserToAddRows = value;
 		}
 		public bool AllowUserToDeleteRows
 		{
-			get => table.AllowUserToDeleteRows;
 			set => table.AllowUserToDeleteRows = value;
 		}
+		/// <summary>First N columns won't be visible to the user.</summary>
+		public byte NumberOfHiddenColumns
+		{
+			set
+			{
+				for(byte i = 0; i < value; ++i)
+					table.Columns[i].Visible = false;
+			}
+		}
+		/// <summary>First N columns will stay in place when scrolling horizontally.</summary>
+		public byte NumberOfFrozenColumns
+		{
+			set
+			{
+				for(byte i = 0; i < value; ++i)
+					table.Columns[i].Frozen = false;
+			}
+		}
 
-		public SQLiteTableGridView(object dataSource,
-			int numOfInvisibleCols = 0, int numOfFrozenCols = 1)
+		public SQLiteTableGridView(object dataSource)
 		{
 			InitializeComponent();
 			
@@ -33,13 +48,8 @@ namespace JP.SQLite
 			table.Dock = DockStyle.Fill;
 			
 			table.DataBindingComplete += (sender, eventArgs) =>
-			{
-				table.DataError += (s, ea) => ea.Cancel = true ;
-				for(int i = 0; i < numOfFrozenCols; ++i)
-					table.Columns[i].Frozen = true;
-				for(int i = 0; i < numOfInvisibleCols; ++i)
-					table.Columns[i].Visible = false;
-			};
+				table.DataError += (s, ea) => ea.Cancel = true;
+
 			table.DataSource = dataSource;
 		}
 

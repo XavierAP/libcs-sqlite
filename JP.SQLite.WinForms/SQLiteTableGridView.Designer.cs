@@ -46,7 +46,7 @@ namespace JP.SQLite
 			tableLayoutPanel1.Controls.Add(this.ButtonCancel, 1, 0);
 			tableLayoutPanel1.Controls.Add(this.ButtonSave, 0, 0);
 			tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			tableLayoutPanel1.Location = new System.Drawing.Point(0, 293);
+			tableLayoutPanel1.Location = new System.Drawing.Point(0, 338);
 			tableLayoutPanel1.Name = "tableLayoutPanel1";
 			tableLayoutPanel1.RowCount = 1;
 			tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -59,11 +59,11 @@ namespace JP.SQLite
 			this.ButtonCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.ButtonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.ButtonCancel.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ButtonCancel.Location = new System.Drawing.Point(211, 5);
+			this.ButtonCancel.Location = new System.Drawing.Point(219, 5);
 			this.ButtonCancel.Margin = new System.Windows.Forms.Padding(20, 5, 20, 5);
 			this.ButtonCancel.Name = "ButtonCancel";
 			this.ButtonCancel.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
-			this.ButtonCancel.Size = new System.Drawing.Size(151, 50);
+			this.ButtonCancel.Size = new System.Drawing.Size(159, 50);
 			this.ButtonCancel.TabIndex = 1;
 			this.ButtonCancel.TabStop = false;
 			this.ButtonCancel.Text = "Cancel";
@@ -79,22 +79,23 @@ namespace JP.SQLite
 			this.ButtonSave.Margin = new System.Windows.Forms.Padding(20, 5, 20, 5);
 			this.ButtonSave.Name = "ButtonSave";
 			this.ButtonSave.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
-			this.ButtonSave.Size = new System.Drawing.Size(151, 50);
+			this.ButtonSave.Size = new System.Drawing.Size(159, 50);
 			this.ButtonSave.TabIndex = 0;
 			this.ButtonSave.TabStop = false;
 			this.ButtonSave.Text = "Save";
 			this.ButtonSave.UseVisualStyleBackColor = true;
 			// 
-			// FormData
+			// SQLiteTableGridView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(382, 353);
-			this.ControlBox = false;
+			this.AutoSize = true;
+			this.ClientSize = new System.Drawing.Size(398, 398);
 			this.Controls.Add(tableLayoutPanel1);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(400, 400);
+			this.Name = "SQLiteTableGridView";
+			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			tableLayoutPanel1.ResumeLayout(false);
