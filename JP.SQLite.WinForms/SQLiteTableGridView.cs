@@ -1,9 +1,9 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace JP.InvestCalc
+namespace JP.SQLite
 {
-	internal partial class SQLiteTableGridView : Form
+	public partial class SQLiteTableGridView : Form
 	{
 		public bool AllowUserToAddRows
 		{

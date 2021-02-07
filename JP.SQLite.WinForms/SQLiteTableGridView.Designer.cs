@@ -1,5 +1,5 @@
 ﻿
-namespace JP.InvestCalc
+namespace JP.SQLite
 {
 	partial class SQLiteTableGridView
 	{
@@ -95,10 +95,8 @@ namespace JP.InvestCalc
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(400, 400);
-			this.Name = "FormData";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Stock data";
 			tableLayoutPanel1.ResumeLayout(false);
 			tableLayoutPanel1.PerformLayout();
 			this.ResumeLayout(false);

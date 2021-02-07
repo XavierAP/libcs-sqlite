@@ -28,7 +28,7 @@ namespace JP.SQLite
 
 		public void Update()
 		{
-			if(IsDisposed) throw new InvalidOperationException($"May not call {nameof(Update)} after {nameof(Dispose)}.");
+			if(IsDisposed) throw new InvalidOperationException($"May not call {nameof(SQLiteBinder)}.{nameof(Update)} after .{nameof(Dispose)}.");
 
 			DataAdapter.Update(DataTable);
 			DataTable.AcceptChanges();
