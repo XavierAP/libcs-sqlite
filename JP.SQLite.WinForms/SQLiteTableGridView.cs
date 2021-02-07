@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace JP.SQLite
@@ -32,7 +33,7 @@ namespace JP.SQLite
 			}
 		}
 
-		public SQLiteTableGridView(object dataSource)
+		public SQLiteTableGridView(object dataSource, Action onSaveUpdateDataSource)
 		{
 			InitializeComponent();
 			
@@ -51,6 +52,20 @@ namespace JP.SQLite
 				table.DataError += (s, ea) => ea.Cancel = true;
 
 			table.DataSource = dataSource;
+
+			ButtonSave.Click += (s, ea) =>
+			{
+				try
+				{
+					onSaveUpdateDataSource();
+					Close();
+				}
+				catch(Exception err)
+				{
+					err.Display();
+					DialogResult = DialogResult.Retry;
+				}
+			};
 		}
 
 		readonly DataGridView table;
