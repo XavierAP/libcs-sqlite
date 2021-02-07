@@ -52,9 +52,6 @@ namespace JP.SQLite
 
 			if("SELECT" != words[0].ToUpper() || "*" != words[1])
 				throw new ArgumentException($"Only «SELECT *» SQL command supported by {nameof(SQLiteBinder)}. Received: {selectCommand}");
-			
-			if("FROM" != words[2].ToUpper())
-				throw new ArgumentException($"Wrong SELECT SQL command syntax. Received: {selectCommand}.");
 		}
 		readonly static char[] whitespace = " \n\r\t".ToCharArray();
 	}
