@@ -4,4 +4,5 @@
 ### Visual Studio
 **/bin/
 **/obj/
+*.user
 *.resx
