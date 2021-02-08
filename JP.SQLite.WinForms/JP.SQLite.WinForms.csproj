@@ -6,4 +6,8 @@
     <RootNamespace>JP.SQLite</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Data.SQLite" Version="1.0.113.7" />
+  </ItemGroup>
+
 </Project>
