@@ -11,7 +11,7 @@ namespace JP.SQLite
 		readonly SQLiteDataAdapter DataAdapter;
 		readonly SQLiteCommandBuilder CommandBuilder;
 
-		public SQLiteBinder(string dbFilePathName, string selectCommand, byte numOfReadOnlyCols = 1)
+		public SQLiteBinder(string dbFilePathName, string selectCommand)
 		{
 			Validate(selectCommand);
 
@@ -21,9 +21,16 @@ namespace JP.SQLite
 			CommandBuilder = new SQLiteCommandBuilder(DataAdapter);
 			DataTable = new DataTable();
 			DataAdapter.Fill(DataTable);
-
-			for(byte i = 0; i < numOfReadOnlyCols; ++i)
-				DataTable.Columns[i].ReadOnly = true;
+		}
+		
+		/// <summary>First N columns may not be modified.</summary>
+		public byte NumberOfReadOnlyColumns
+		{
+			set
+			{
+				for(byte i = 0; i < value; ++i)
+					DataTable.Columns[i].ReadOnly = false;
+			}
 		}
 
 		public void Update()
