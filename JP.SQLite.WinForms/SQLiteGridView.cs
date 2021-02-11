@@ -5,7 +5,8 @@ namespace JP.SQLite
 {
 	public class SQLiteGridView : DataGridView
 	{
-		/// <summary>First N columns may not be modified.</summary>
+		/// <summary>First N columns may not be modified.
+		/// Do not set before the DataBindingComplete event, or use constructor parameter.</summary>
 		public byte NumberOfReadOnlyColumns
 		{
 			set
@@ -14,7 +15,8 @@ namespace JP.SQLite
 					Columns[i].ReadOnly = false;
 			}
 		}
-		/// <summary>First N columns won't be visible to the user.</summary>
+		/// <summary>First N columns won't be visible to the user.
+		/// Do not set before the DataBindingComplete event, or use constructor parameter.</summary>
 		public byte NumberOfHiddenColumns
 		{
 			set
@@ -23,7 +25,8 @@ namespace JP.SQLite
 					Columns[i].Visible = false;
 			}
 		}
-		/// <summary>First N columns will stay in place when scrolling horizontally.</summary>
+		/// <summary>First N columns will stay in place when scrolling horizontally.
+		/// Do not set before the DataBindingComplete event, or use constructor parameter.</summary>
 		public byte NumberOfFrozenColumns
 		{
 			set
