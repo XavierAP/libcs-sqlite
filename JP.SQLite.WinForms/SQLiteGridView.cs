@@ -6,7 +6,8 @@ namespace JP.SQLite
 	public class SQLiteGridView : DataGridView
 	{
 		/// <summary>First N columns may not be modified.
-		/// Do not set before the DataBindingComplete event, or use constructor parameter.</summary>
+		/// Do not set before the DataBindingComplete event.
+		/// Constructor parameter may be used instead.</summary>
 		public byte NumberOfReadOnlyColumns
 		{
 			set
@@ -16,7 +17,8 @@ namespace JP.SQLite
 			}
 		}
 		/// <summary>First N columns won't be visible to the user.
-		/// Do not set before the DataBindingComplete event, or use constructor parameter.</summary>
+		/// Do not set before the DataBindingComplete event.
+		/// Constructor parameter may be used instead.</summary>
 		public byte NumberOfHiddenColumns
 		{
 			set
@@ -26,7 +28,8 @@ namespace JP.SQLite
 			}
 		}
 		/// <summary>First N columns will stay in place when scrolling horizontally.
-		/// Do not set before the DataBindingComplete event, or use constructor parameter.</summary>
+		/// Do not set before the DataBindingComplete event.
+		/// Constructor parameter may be used instead.</summary>
 		public byte NumberOfFrozenColumns
 		{
 			set
@@ -42,9 +45,6 @@ namespace JP.SQLite
 			byte numberOfFrozenColumns = 0)
 		{
 			AlternatingRowsDefaultCellStyle.BackColor = Color.LightGoldenrodYellow;
-			AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-			AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-			ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			
 			DataBindingComplete += (sender, eventArgs) =>
 			{
