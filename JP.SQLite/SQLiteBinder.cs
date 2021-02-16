@@ -4,10 +4,17 @@ using System.Data.SQLite;
 
 namespace JP.SQLite
 {
-	public class SQLiteBinder : IDisposable
+	public interface ISQLiteBinder
+	{
+		DataTable DataTable { get; }
+		byte NumberOfReadOnlyColumns { set; }
+		void Update();
+	}
+
+	public class SQLiteBinder : IDisposable, ISQLiteBinder
 	{
 		public DataTable DataTable { get; }
-		
+
 		readonly SQLiteDataAdapter DataAdapter;
 		readonly SQLiteCommandBuilder CommandBuilder;
 
@@ -22,7 +29,7 @@ namespace JP.SQLite
 			DataTable = new DataTable();
 			DataAdapter.Fill(DataTable);
 		}
-		
+
 		/// <summary>First N columns may not be modified.</summary>
 		public byte NumberOfReadOnlyColumns
 		{

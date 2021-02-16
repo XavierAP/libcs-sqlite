@@ -6,6 +6,15 @@ using System.IO;
 
 namespace JP.SQLite
 {
+	public interface ISQLiteConnector
+	{
+		void Attach(string pathName, bool fileExists, string dbName = null);
+		void Detach(string dbName);
+		DataTable Select(string sqlStatement);
+		void Write(IEnumerable<string> sqlStatements);
+		void Write(params string[] sqlStatements);
+	}
+
 	/// <summary>SQLite connector with simplified interface, and thread-safe.</summary>
 	/// <remarks>Wraps <see cref="System.Data.SQLite.SQLiteConnection"/>.
 	/// Every <see cref="Select"/>() query creates a transaction, and
@@ -17,7 +26,7 @@ namespace JP.SQLite
 	/// prefer infrequent queries and manipulations, and cache data
 	/// in your own program's memory, and handle exceptions.</remarks>
 	/// <exception>Up to you buddy.</exception>
-	public class SQLiteConnector
+	public class SQLiteConnector : ISQLiteConnector, IDisposable
 	{
 		private readonly SQLiteConnection connection;
 		private readonly object Locker = new object();
@@ -151,5 +160,7 @@ namespace JP.SQLite
 			}
 			else File.Create(pathName).Dispose();
 		}
+
+		public void Dispose() => connection.Dispose();
 	}
 }
