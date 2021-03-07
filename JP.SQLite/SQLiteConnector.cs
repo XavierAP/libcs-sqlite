@@ -10,7 +10,7 @@ namespace JP.SQLite
 	{
 		void Attach(string pathName, bool fileExists, string dbName = null);
 		void Detach(string dbName);
-		DataTable Select(string sqlStatement);
+		ISimpleDataReader Select(string sqlStatement);
 		void Write(IEnumerable<string> sqlStatements);
 		void Write(params string[] sqlStatements);
 	}
@@ -75,27 +75,24 @@ namespace JP.SQLite
 			Write(string.Format("DETACH '{0}'", dbName));
 		}
 
-		public DataTable Select(string sqlStatement)
+		public ISimpleDataReader Select(string sqlStatement)
 		{
 			if(string.IsNullOrWhiteSpace(sqlStatement))
 				throw new ArgumentNullException(nameof(sqlStatement));
 
-			var dtable = new DataTable();
 			lock(Locker)
 			{
 				try
 				{
 					connection.Open();
-					using(var command = new SQLiteCommand(sqlStatement, connection))
-					using(var reader = command.ExecuteReader())
-						dtable.Load(reader);
+					var command = new SQLiteCommand(sqlStatement, connection);
+					return new SimpleDataReader(command.ExecuteReader(), command, connection);
 				}
-				finally
+				catch
 				{
 					connection.Close();
+					throw;
 				}
-
-				return dtable;
 			}
 		}
 
